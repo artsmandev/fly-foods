@@ -1,4 +1,4 @@
-package dev.artsman.flyfoods.domain.kitchen;
+package dev.artsman.flyfoods.domain.cuisine;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-class Kitchen {
+class Cuisine {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator(name = "kitchen_seq")
+	@SequenceGenerator(name = "cuisine_seq")
 	@Column(columnDefinition = "serial")
 	@EqualsAndHashCode.Include
 	private Long id;
