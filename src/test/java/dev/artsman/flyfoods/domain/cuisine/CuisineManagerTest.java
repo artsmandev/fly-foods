@@ -34,4 +34,15 @@ class CuisineManagerTest {
 
 		Assertions.assertEquals(3, brazilianCreated.getId());
 	}
+
+	@Test
+	void shouldFindById() {
+		ConfigurableApplicationContext applicationContext = new SpringApplicationBuilder(FlyFoodsApiApplication.class).web(WebApplicationType.NONE).run("");
+		CuisineManager manager = applicationContext.getBean(CuisineManager.class);
+
+		Cuisine thailand = manager.findBy(1L);
+
+		Assertions.assertEquals(1L, thailand.getId());
+		Assertions.assertEquals("Ireland", thailand.getName());
+	}
 }

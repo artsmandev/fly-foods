@@ -25,4 +25,8 @@ class CuisineManager {
 	public Cuisine create(Cuisine cuisine) {
 		return entityManager.merge(cuisine);
 	}
+
+	public Cuisine findBy(Long id) {
+		return entityManager.find(Cuisine.class, id);
+	}
 }
