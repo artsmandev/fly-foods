@@ -30,7 +30,7 @@ class CuisineManagerTest {
 		Assertions.assertEquals(2, manager.findAll().size());
 
 		Cuisine brazilian = new Cuisine(null, "Brazilian");
-		Cuisine brazilianCreated = manager.create(brazilian);
+		Cuisine brazilianCreated = manager.save(brazilian);
 
 		Assertions.assertEquals(3, brazilianCreated.getId());
 	}
@@ -44,5 +44,20 @@ class CuisineManagerTest {
 
 		Assertions.assertEquals(1L, thailand.getId());
 		Assertions.assertEquals("Ireland", thailand.getName());
+	}
+
+	@Test
+	void shouldUpdateCuisine() {
+		ConfigurableApplicationContext applicationContext = new SpringApplicationBuilder(FlyFoodsApiApplication.class).web(WebApplicationType.NONE).run("");
+		CuisineManager manager = applicationContext.getBean(CuisineManager.class);
+
+		Cuisine ireland = manager.findBy(1L);
+		Assertions.assertEquals("Ireland", ireland.getName());
+
+		Cuisine updateIrelandToFrench = new Cuisine(1L, "French");
+		Cuisine french = manager.save(updateIrelandToFrench);
+
+		Assertions.assertEquals(1L, french.getId());
+		Assertions.assertEquals("French", french.getName());
 	}
 }

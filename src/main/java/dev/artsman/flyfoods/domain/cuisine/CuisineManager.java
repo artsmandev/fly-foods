@@ -22,7 +22,7 @@ class CuisineManager {
 	}
 
 	@Transactional
-	public Cuisine create(Cuisine cuisine) {
+	public Cuisine save(Cuisine cuisine) {
 		return entityManager.merge(cuisine);
 	}
 
