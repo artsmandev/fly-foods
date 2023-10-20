@@ -10,7 +10,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 class CuisineManagerTest {
 	@Test
-		void shouldFindAllCuisines() {
+	void shouldFindAllCuisines() {
 		ConfigurableApplicationContext applicationContext = new SpringApplicationBuilder(FlyFoodsApiApplication.class).web(WebApplicationType.NONE)
 																																																									.run("");
 		CuisineManager manager = applicationContext.getBean(CuisineManager.class);
@@ -18,5 +18,20 @@ class CuisineManagerTest {
 
 		Set<Cuisine> expected = Set.of(new Cuisine(1L, "Thailand"), new Cuisine(2L, "Ireland"));
 		Assertions.assertTrue(cuisines.containsAll(expected));
+	}
+
+	@Test
+	void shouldCreateCuisine() {
+		ConfigurableApplicationContext applicationContext = new SpringApplicationBuilder(FlyFoodsApiApplication.class).web(WebApplicationType.NONE)
+																																																									.run("");
+
+		CuisineManager manager = applicationContext.getBean(CuisineManager.class);
+
+		Assertions.assertEquals(2, manager.findAll().size());
+
+		Cuisine brazilian = new Cuisine(null, "Brazilian");
+		Cuisine brazilianCreated = manager.create(brazilian);
+
+		Assertions.assertEquals(3, brazilianCreated.getId());
 	}
 }

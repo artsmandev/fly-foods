@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @RequiredArgsConstructor
@@ -18,5 +19,10 @@ class CuisineManager {
 		List<Cuisine> cuisines = entityManager.createQuery("from Cuisine", Cuisine.class)
 																					.getResultList();
 		return new HashSet<>(cuisines);
+	}
+
+	@Transactional
+	public Cuisine create(Cuisine cuisine) {
+		return entityManager.merge(cuisine);
 	}
 }
