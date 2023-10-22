@@ -1,35 +1,37 @@
-package dev.artsman.flyfoods.domain.cuisine;
+package dev.artsman.flyfoods.domain.cuisine.infrastructure;
 
+import dev.artsman.flyfoods.domain.cuisine.Cuisine;
+import dev.artsman.flyfoods.domain.cuisine.CuisineRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @RequiredArgsConstructor
-class CuisineManager {
+class CuisineRepositoryImpl implements CuisineRepository {
 	@PersistenceContext
 	private final EntityManager entityManager;
 
-	public Set<Cuisine> findAll() {
-		List<Cuisine> cuisines = entityManager.createQuery("from Cuisine", Cuisine.class)
-																					.getResultList();
-		return new HashSet<>(cuisines);
+	@Override
+	public List<Cuisine> findAll() {
+		return entityManager.createQuery("from Cuisine", Cuisine.class).getResultList();
 	}
 
+	@Override
+	public Cuisine findBy(Long id) {
+		return entityManager.find(Cuisine.class, id);
+	}
+
+	@Override
 	@Transactional
 	public Cuisine save(Cuisine cuisine) {
 		return entityManager.merge(cuisine);
 	}
 
-	public Cuisine findBy(Long id) {
-		return entityManager.find(Cuisine.class, id);
-	}
-
+	@Override
 	@Transactional
 	public void remove(Cuisine cuisine) {
 		entityManager.remove(findBy(cuisine.getId()));
