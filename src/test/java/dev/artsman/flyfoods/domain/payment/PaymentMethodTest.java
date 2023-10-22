@@ -46,6 +46,7 @@ class PaymentMethodTest {
 		repository.save(debit);
 
 		payPal = repository.findBy(1L);
+
 		Assertions.assertEquals(1, payPal.getId());
 		Assertions.assertEquals("Debit", payPal.getName());
 	}
