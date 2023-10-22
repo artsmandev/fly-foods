@@ -2,7 +2,6 @@ package dev.artsman.flyfoods.domain.restaurant;
 
 import dev.artsman.flyfoods.FlyFoodsApiApplication;
 import dev.artsman.flyfoods.domain.cuisine.Cuisine;
-import dev.artsman.flyfoods.domain.cuisine.CuisineRepository;
 import java.math.BigDecimal;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
@@ -20,6 +19,8 @@ class RestaurantRepositoryTest {
 		List<Restaurant> restaurants = repository.findAll();
 
 		Assertions.assertEquals(2, restaurants.size());
+		Assertions.assertNotNull(restaurants.get(0).getCuisine());
+		Assertions.assertNotNull(restaurants.get(1).getCuisine());
 	}
 
 	@Test
@@ -38,11 +39,12 @@ class RestaurantRepositoryTest {
 		ConfigurableApplicationContext applicationContext = new SpringApplicationBuilder(FlyFoodsApiApplication.class).web(WebApplicationType.NONE).run("");
 		RestaurantRepository repository = applicationContext.getBean(RestaurantRepository.class);
 
-		Restaurant indianGourmet = new Restaurant(null, "Indian Gourmet", new BigDecimal(30));
+		Cuisine irelandCuisine = new Cuisine(1L, "Ireland");
+		Restaurant indianGourmet = new Restaurant(null, "Ireland Gourmet", new BigDecimal(30), irelandCuisine);
 
-		Restaurant restaurantCreated = repository.save(indianGourmet);
+		indianGourmet = repository.save(indianGourmet);
 
-		Assertions.assertEquals(3, restaurantCreated.getId());
+		Assertions.assertEquals(3, indianGourmet.getId());
 	}
 
 	@Test
@@ -53,12 +55,15 @@ class RestaurantRepositoryTest {
 		Restaurant thaiGourmet = repository.findBy(1L);
 		Assertions.assertEquals("Ireland Gourmet", thaiGourmet.getName());
 
-		Restaurant updateThailandToBritish = new Restaurant(1L, "British Gourmet", new BigDecimal(40));
+		Cuisine britishCuisine = new Cuisine(1L, "British");
+		Restaurant updateThailandToBritish = new Restaurant(1L, "British Gourmet", new BigDecimal(40), britishCuisine);
 		Restaurant british = repository.save(updateThailandToBritish);
 
 		Assertions.assertEquals(1L, british.getId());
 		Assertions.assertEquals("British Gourmet", british.getName());
 		Assertions.assertEquals(new BigDecimal(40), british.getDeliveryFee());
+
+		Assertions.assertEquals("British", britishCuisine.getName());
 	}
 
 	@Test

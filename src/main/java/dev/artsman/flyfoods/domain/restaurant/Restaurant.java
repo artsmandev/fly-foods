@@ -1,10 +1,12 @@
 package dev.artsman.flyfoods.domain.restaurant;
 
+import dev.artsman.flyfoods.domain.cuisine.Cuisine;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -24,4 +26,6 @@ public class Restaurant {
 	private Long id;
 	private String name;
 	private BigDecimal deliveryFee;
+	@ManyToOne
+	private Cuisine cuisine;
 }
