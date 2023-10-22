@@ -60,4 +60,16 @@ class CuisineManagerTest {
 		Assertions.assertEquals(1L, french.getId());
 		Assertions.assertEquals("French", french.getName());
 	}
+
+	@Test
+	void shouldRemoveCuisine() {
+		ConfigurableApplicationContext applicationContext = new SpringApplicationBuilder(FlyFoodsApiApplication.class).web(WebApplicationType.NONE).run("");
+		CuisineManager manager = applicationContext.getBean(CuisineManager.class);
+
+		Cuisine cuisine = manager.findBy(1L);
+		Assertions.assertNotNull(cuisine);
+
+		manager.remove(cuisine);
+		Assertions.assertNull(manager.findBy(1L));
+	}
 }

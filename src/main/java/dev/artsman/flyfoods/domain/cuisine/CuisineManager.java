@@ -29,4 +29,9 @@ class CuisineManager {
 	public Cuisine findBy(Long id) {
 		return entityManager.find(Cuisine.class, id);
 	}
+
+	@Transactional
+	public void remove(Cuisine cuisine) {
+		entityManager.remove(findBy(cuisine.getId()));
+	}
 }
