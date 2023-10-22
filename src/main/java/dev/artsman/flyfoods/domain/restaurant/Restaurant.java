@@ -24,8 +24,13 @@ public class Restaurant {
 	@Column(columnDefinition = "serial")
 	@EqualsAndHashCode.Include
 	private Long id;
+
+	@Column(nullable = false)
 	private String name;
+
+	@Column(nullable = false)
 	private BigDecimal deliveryFee;
+
 	@ManyToOne
 	private Cuisine cuisine;
 }
