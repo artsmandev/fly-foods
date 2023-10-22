@@ -1,6 +1,8 @@
 package dev.artsman.flyfoods.domain.restaurant;
 
 import dev.artsman.flyfoods.FlyFoodsApiApplication;
+import dev.artsman.flyfoods.domain.cuisine.Cuisine;
+import dev.artsman.flyfoods.domain.cuisine.CuisineRepository;
 import java.math.BigDecimal;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
@@ -41,6 +43,22 @@ class RestaurantRepositoryTest {
 		Restaurant restaurantCreated = repository.save(indianGourmet);
 
 		Assertions.assertEquals(3, restaurantCreated.getId());
+	}
+
+	@Test
+	void shouldUpdate() {
+		ConfigurableApplicationContext applicationContext = new SpringApplicationBuilder(FlyFoodsApiApplication.class).web(WebApplicationType.NONE).run("");
+		RestaurantRepository repository = applicationContext.getBean(RestaurantRepository.class);
+
+		Restaurant thaiGourmet = repository.findBy(1L);
+		Assertions.assertEquals("Ireland Gourmet", thaiGourmet.getName());
+
+		Restaurant updateThailandToBritish = new Restaurant(1L, "British Gourmet", new BigDecimal(40));
+		Restaurant british = repository.save(updateThailandToBritish);
+
+		Assertions.assertEquals(1L, british.getId());
+		Assertions.assertEquals("British Gourmet", british.getName());
+		Assertions.assertEquals(new BigDecimal(40), british.getDeliveryFee());
 	}
 
 	@Test

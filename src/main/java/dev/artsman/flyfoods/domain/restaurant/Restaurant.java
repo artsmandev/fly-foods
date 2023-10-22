@@ -14,13 +14,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Restaurant {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(columnDefinition = "serial")
 	@EqualsAndHashCode.Include
-	@Getter
 	private Long id;
 	private String name;
 	private BigDecimal deliveryFee;

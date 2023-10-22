@@ -9,9 +9,9 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
-class CuisineManagerTest {
+class CuisineRepositoryTest {
 	@Test
-	void shouldFindAllCuisines() {
+	void shouldFindAll() {
 		ConfigurableApplicationContext applicationContext = new SpringApplicationBuilder(FlyFoodsApiApplication.class).web(WebApplicationType.NONE).run("");
 		CuisineRepository repository = applicationContext.getBean(CuisineRepository.class);
 
@@ -22,7 +22,7 @@ class CuisineManagerTest {
 	}
 
 	@Test
-	void shouldCreateCuisine() {
+	void shouldCreate() {
 		ConfigurableApplicationContext applicationContext = new SpringApplicationBuilder(FlyFoodsApiApplication.class).web(WebApplicationType.NONE).run("");
 		CuisineRepository repository = applicationContext.getBean(CuisineRepository.class);
 
@@ -46,7 +46,7 @@ class CuisineManagerTest {
 	}
 
 	@Test
-	void shouldUpdateCuisine() {
+	void shouldUpdate() {
 		ConfigurableApplicationContext applicationContext = new SpringApplicationBuilder(FlyFoodsApiApplication.class).web(WebApplicationType.NONE).run("");
 		CuisineRepository repository = applicationContext.getBean(CuisineRepository.class);
 
@@ -61,7 +61,7 @@ class CuisineManagerTest {
 	}
 
 	@Test
-	void shouldRemoveCuisine() {
+	void shouldRemove() {
 		ConfigurableApplicationContext applicationContext = new SpringApplicationBuilder(FlyFoodsApiApplication.class).web(WebApplicationType.NONE).run("");
 		CuisineRepository repository = applicationContext.getBean(CuisineRepository.class);
 
