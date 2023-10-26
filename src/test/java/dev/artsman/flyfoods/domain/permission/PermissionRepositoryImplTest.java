@@ -1,6 +1,7 @@
 package dev.artsman.flyfoods.domain.permission;
 
 import dev.artsman.flyfoods.FlyFoodsApiApplication;
+import dev.artsman.flyfoods.domain.payment.PaymentMethod;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -38,6 +39,26 @@ class PermissionRepositoryImplTest {
 
 	@Test
 	void shouldUpdate() {
+		Permission read = repository.finBy(1L);
+		Assertions.assertNotNull(read);
 
+		Permission writeOnly = new Permission(1L, "Write Only", "It's allowed to write only");
+		repository.save(writeOnly);
+
+		read = repository.finBy(1L);
+
+		Assertions.assertEquals(1L, read.getId());
+		Assertions.assertEquals("Write Only", read.getName());
+		Assertions.assertEquals("It's allowed to write only", read.getDescription());
+	}
+
+	@Test
+	void shouldRemove() {
+		Permission read = repository.finBy(1L);
+		Assertions.assertNotNull(read);
+
+		repository.remove(read);
+
+		Assertions.assertNull(repository.finBy(1L));
 	}
 }

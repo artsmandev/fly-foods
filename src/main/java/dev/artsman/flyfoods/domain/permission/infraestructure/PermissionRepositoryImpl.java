@@ -30,4 +30,10 @@ class PermissionRepositoryImpl implements PermissionRepository {
 	public Permission save(Permission permission) {
 		return entityManager.merge(permission);
 	}
+
+	@Override
+	@Transactional
+	public void remove(Permission permission) {
+		entityManager.remove(finBy(permission.getId()));
+	}
 }

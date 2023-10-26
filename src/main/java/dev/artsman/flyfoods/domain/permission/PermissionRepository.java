@@ -8,4 +8,6 @@ public interface PermissionRepository {
 	Permission finBy(Long id);
 
 	Permission save(Permission permission);
+
+	void remove(Permission permission);
 }
