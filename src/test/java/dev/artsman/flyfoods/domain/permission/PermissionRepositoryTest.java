@@ -1,7 +1,6 @@
 package dev.artsman.flyfoods.domain.permission;
 
 import dev.artsman.flyfoods.FlyFoodsApiApplication;
-import dev.artsman.flyfoods.domain.payment.PaymentMethod;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,7 +9,7 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
-class PermissionRepositoryImplTest {
+class PermissionRepositoryTest {
 	static PermissionRepository repository;
 
 	@BeforeAll

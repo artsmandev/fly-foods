@@ -9,7 +9,7 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
-class PaymentMethodTest {
+class PaymentMethodRepositoryTest {
 	static PaymentMethodRepository repository;
 
 	@BeforeAll
