@@ -12,3 +12,6 @@ insert into permission(name, description) values('Write', 'It is allowed to writ
 
 insert into state(name) values('Lisbon');
 insert into state(name) values('Porto');
+
+insert into city(name, state_id) values('Lisboa', 1);
+insert into city(name, state_id) values('Algarve', 2);
