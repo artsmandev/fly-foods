@@ -1,9 +1,8 @@
-package dev.artsman.flyfoods.domain.city;
+package dev.artsman.flyfoods.state;
 
 import dev.artsman.flyfoods.FlyFoodsApiApplication;
-import dev.artsman.flyfoods.city.domain.model.City;
-import dev.artsman.flyfoods.city.domain.repository.CityRepository;
 import dev.artsman.flyfoods.state.domain.model.State;
+import dev.artsman.flyfoods.state.domain.repository.StateRepository;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,37 +11,43 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
-class CityRepositoryTest {
-	static CityRepository repository;
+class StateRepositoryTest {
+	static StateRepository repository;
 
 	@BeforeAll
 	static void initAll() {
 		ConfigurableApplicationContext applicationContext = new SpringApplicationBuilder(FlyFoodsApiApplication.class).web(WebApplicationType.NONE).run();
-		repository = applicationContext.getBean(CityRepository.class);
+		repository = applicationContext.getBean(StateRepository.class);
 	}
 
 	@Test
 	void shouldFindAll() {
-		List<City> cities = repository.findAll();
-		Assertions.assertEquals(2, cities.size());
+		List<State> states = repository.findAll();
+		Assertions.assertEquals(2, states.size());
 	}
 
 	@Test
 	void shouldFindById() {
-		City lisbon = repository.findById(1L);
-		Assertions.assertNotNull(lisbon);
+		State lisbon = repository.findById(1L);
+		Assertions.assertEquals(1L, lisbon.getId());
+		Assertions.assertEquals("Lisbon", lisbon.getName());
 	}
 
 	@Test
 	void shouldCreate() {
-		City sintra = new City(null, "Sintra", new State(1L, "Lisbon"));
-		sintra = repository.create(sintra);
-		Assertions.assertEquals(3, sintra.getId());
+		List<State> states = repository.findAll();
+		Assertions.assertEquals(2, states.size());
+
+		State coimbra = repository.create(new State(null, "Coimbra"));
+		Assertions.assertNotNull(coimbra);
+
+		states = repository.findAll();
+		Assertions.assertEquals(3, states.size());
 	}
 
 	@Test
 	void shouldRemove() {
-		City lisbon = repository.findById(1L);
+		State lisbon = repository.findById(1L);
 		Assertions.assertNotNull(lisbon);
 
 		repository.remove(lisbon);

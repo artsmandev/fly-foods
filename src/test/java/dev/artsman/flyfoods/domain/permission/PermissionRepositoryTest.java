@@ -1,6 +1,8 @@
 package dev.artsman.flyfoods.domain.permission;
 
 import dev.artsman.flyfoods.FlyFoodsApiApplication;
+import dev.artsman.flyfoods.permission.domain.model.Permission;
+import dev.artsman.flyfoods.permission.domain.repository.PermissionRepository;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;

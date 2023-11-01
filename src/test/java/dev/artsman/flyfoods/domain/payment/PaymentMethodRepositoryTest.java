@@ -1,6 +1,8 @@
 package dev.artsman.flyfoods.domain.payment;
 
 import dev.artsman.flyfoods.FlyFoodsApiApplication;
+import dev.artsman.flyfoods.payment.domain.model.PaymentMethod;
+import dev.artsman.flyfoods.payment.domain.repository.PaymentMethodRepository;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;

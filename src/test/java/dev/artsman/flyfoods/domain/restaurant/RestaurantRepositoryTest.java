@@ -1,7 +1,9 @@
 package dev.artsman.flyfoods.domain.restaurant;
 
 import dev.artsman.flyfoods.FlyFoodsApiApplication;
-import dev.artsman.flyfoods.domain.cuisine.Cuisine;
+import dev.artsman.flyfoods.cuisine.domain.model.Cuisine;
+import dev.artsman.flyfoods.restaurant.domain.model.Restaurant;
+import dev.artsman.flyfoods.restaurant.domain.repository.RestaurantRepository;
 import java.math.BigDecimal;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;

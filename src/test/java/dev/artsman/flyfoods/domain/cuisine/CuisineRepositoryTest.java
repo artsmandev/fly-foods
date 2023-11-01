@@ -1,6 +1,8 @@
 package dev.artsman.flyfoods.domain.cuisine;
 
 import dev.artsman.flyfoods.FlyFoodsApiApplication;
+import dev.artsman.flyfoods.cuisine.domain.model.Cuisine;
+import dev.artsman.flyfoods.cuisine.domain.repository.CuisineRepository;
 import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.Assertions;
